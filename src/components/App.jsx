@@ -49,8 +49,9 @@ const App = () => {
   };
 
   const emptyCart = () => {
-    setCart([]);
-    setErrorMessage("");  // Clear error message if cart is emptied
+    setCart([]);           // Clear the cart
+    setErrorMessage("");    // Clear any error messages
+    setShowCart(false);     // Close the cart view to return to products
   };
 
   const showProducts = () => {
@@ -62,9 +63,8 @@ const App = () => {
     <div>
       <Header 
         cartCount={cart.reduce((total, item) => total + item.quantity, 0)}
-        onCartClick={() => !showConfirmation && setShowCart(true)}  // Disable cart if purchase is complete
+        onCartClick={() => setShowCart(true)}
         onProductsClick={showProducts}
-        showConfirmation={showConfirmation}
       />
 
       {!showCart && !showConfirmation && <Products addToCart={addToCart} triggerFetch={triggerFetch} />}
@@ -87,6 +87,5 @@ const App = () => {
 };
 
 export default App;
-
 
 

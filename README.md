@@ -1,1 +1,1 @@
-# webb24-js2-slutprojekt-melanie-kovacs
+a simple webshop created using react and firebase

@@ -1,9 +1,8 @@
 import React from 'react';
 
-const Cart = ({ cartItems, onClose, onPurchase, onEmptyCart }) => (
+const Cart = ({ cartItems, onPurchase, onEmptyCart }) => (
   <div className="cart-container">
     <h2 className="cart-header">Shopping Cart</h2>
-    <button onClick={onClose} className="cart-close-button">Close Cart</button>
     {cartItems.length === 0 ? (
       <p className="cart-empty-message">Your cart is empty</p>
     ) : (
@@ -24,3 +23,4 @@ const Cart = ({ cartItems, onClose, onPurchase, onEmptyCart }) => (
 );
 
 export default Cart;
+

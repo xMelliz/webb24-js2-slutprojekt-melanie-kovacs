@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Products from './Products';
-import Cart from './Cart';
-import Checkout from './Checkout';
-import { doc, updateDoc } from 'firebase/firestore';
+import Cart from './Cart'; 
+import Checkout from './Checkout'; 
+import { doc, updateDoc } from 'firebase/firestore'; 
 import { db } from '../firebase';
 
 const App = () => {
@@ -14,6 +14,11 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const addToCart = (product) => {
+    if (product.stock <= 0) {
+      setErrorMessage("This item is out of stock and cannot be added to the cart.");
+      return;  // Exit the function if stock is zero
+    }
+
     setCart(prevCart => {
       const existingProduct = prevCart.find(item => item.id === product.id);
       if (existingProduct) {
@@ -25,7 +30,7 @@ const App = () => {
       }
       return [...prevCart, { ...product, quantity: 1 }];
     });
-    setErrorMessage("");  // Clear error message when adding to cart
+    setErrorMessage("");  // Clear error message on successful addition
   };
 
   const handlePurchase = async () => {
@@ -49,9 +54,9 @@ const App = () => {
   };
 
   const emptyCart = () => {
-    setCart([]);           // Clear the cart
-    setErrorMessage("");    // Clear any error messages
-    setShowCart(false);     // Close the cart view to return to products
+    setCart([]);
+    setErrorMessage("");
+    setShowCart(false);
   };
 
   const showProducts = () => {
